@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DestinationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DestinationRepository::class)]
@@ -18,11 +19,11 @@ class Destination
     #[ORM\Column(length: 80)]
     private ?string $country = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $region = null;
-
     #[ORM\ManyToMany(targetEntity: Journey::class, mappedBy: 'destinations')]
     private Collection $journeys;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private array $regions = [];
 
     public function __construct()
     {
@@ -42,18 +43,6 @@ class Destination
     public function setCountry(string $country): self
     {
         $this->country = $country;
-
-        return $this;
-    }
-
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    public function setRegion(?string $region): self
-    {
-        $this->region = $region;
 
         return $this;
     }
@@ -81,6 +70,18 @@ class Destination
         if ($this->journeys->removeElement($journey)) {
             $journey->removeDestination($this);
         }
+
+        return $this;
+    }
+
+    public function getRegions(): array
+    {
+        return $this->regions;
+    }
+
+    public function setRegions(?array $regions): self
+    {
+        $this->regions = $regions;
 
         return $this;
     }

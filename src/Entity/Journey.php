@@ -28,12 +28,16 @@ class Journey
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private array $pictures = [];
 
-    #[ORM\ManyToOne(inversedBy: 'journeys')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Cyclist $cyclist = null;
+    
 
     #[ORM\OneToMany(mappedBy: 'journey', targetEntity: Step::class, orphanRemoval: true)]
     private Collection $steps;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\ManyToOne(inversedBy: 'journeys')]
+    private ?Cyclist $cyclist = null;
 
     public function __construct()
     {
@@ -106,18 +110,6 @@ class Journey
         return $this;
     }
 
-    public function getCyclist(): ?Cyclist
-    {
-        return $this->cyclist;
-    }
-
-    public function setCyclist(?Cyclist $cyclist): self
-    {
-        $this->cyclist = $cyclist;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Step>
      */
@@ -144,6 +136,30 @@ class Journey
                 $step->setJourney(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCyclist(): ?Cyclist
+    {
+        return $this->cyclist;
+    }
+
+    public function setCyclist(?Cyclist $cyclist): self
+    {
+        $this->cyclist = $cyclist;
 
         return $this;
     }
