@@ -2,6 +2,7 @@
 
 $red: #b16253;
 $turquoise: #3B827E;
+$green: rgb(30, 139, 116);
 $blue: #013950;
 $yellow: #d49625;
 $orange: #D2A56E;
@@ -9,6 +10,8 @@ $orange: #D2A56E;
 @import "navbar";
 @import "journeys";
 @import "login";
+@import "form";
+@import "journey-details";
 
 @import url("https://fonts.googleapis.com/css2?family=Ribeye+Marrow&family=Cambay&family=Simonetta&isplay=swap");
 

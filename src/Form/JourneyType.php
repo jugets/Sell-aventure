@@ -24,12 +24,12 @@ class JourneyType extends AbstractType
             ->add('duration', null, array(
                 'label' => 'Durée',
                 'attr' => [
-                    'placeholder' => 'Durée',
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
             ))
             ->add('difficulty', ChoiceType::class, array(
                 'choices'  => [
+                    '' => '',
                     'facile' => 'facile',
                     'moyen' => 'moyen',
                     'difficile' => 'difficile',
@@ -37,32 +37,29 @@ class JourneyType extends AbstractType
                 ],
                 'label' => 'Difficulté',
                 'attr' => [
-                    'placeholder' => 'Difficulté',
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
             ))
             ->add('picture', TextType::class,  array(
                 'label' => 'Photo',
                 'attr' => [
-                    'placeholder' => 'Photo',
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
             ))
             ->add('name', TextType::class,  array(
                 'label' => 'Nom',
                 'attr' => [
-                    'placeholder' => 'Nom',
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
             ))
-            ->add('cyclist', null, array (
+            /*->add('cyclist', null, array (
                 'choice_label' => 'username',
                 'label' => 'Cycliste',
                 'attr' => [
                     'placeholder' => 'Cycliste',
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
-            ))
+            ))*/
             ->add('country', EntityType::class, array (
                 'class' => Country::class,
                 'choice_label' => 'name',
@@ -70,14 +67,12 @@ class JourneyType extends AbstractType
                 'expanded' => true,
                 'label' => 'Pays',
                 'attr' => [
-                    'placeholder' => 'Pays',
-                    'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
+                    'class' => 'row mx-0 my-3 my-md-2 d-flex form-control journey-input'
                 ]
             ))
             ->add('region', TextType::class,  array(
                 'label' => 'Région',
                 'attr' => [
-                    'placeholder' => 'Région',
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
             ));

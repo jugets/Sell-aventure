@@ -4,75 +4,75 @@
 {% endblock %}
 
 {% block body %}
-<div class="row my-5 mx-5 row-cols-1 row-cols-md-2 row-cols-lg-6">
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-			Pays
-		</button>
-		<ul class="dropdown-menu">
-			<li>
-				<button class="dropdown-item" id="all" type="button">Tous les pays</button>
-			</li>
-		{% for country in countries %}
-			<li>
-				<button class="dropdown-item" id="{{country.name}}" type="button">{{country.name}}</button>
-			</li>
-		{% endfor %}
-		</ul>
+	<div class="row my-5 mx-5 row-cols-1 row-cols-md-2 row-cols-lg-6">
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+				Pays
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<button class="dropdown-item" id="all" type="button">Tous les pays</button>
+				</li>
+				{% for country in countries %}
+					<li>
+						<button class="dropdown-item" id="{{country.name}}" type="button">{{country.name}}</button>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+				Difficulté
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<button class="dropdown-item" id="all-difficulties" type="button">Toutes les difficultés</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="easy" type="button">facile</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="middle" type="button">moyen</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="difficult" type="button">difficile</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="expert" type="button">expert</button>
+				</li>
+			</ul>
+		</div>
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+				Durée
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<button class="dropdown-item" id="all-durations" type="button">Toutes les durées</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="week-end" type="button">week-end</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="1-week" type="button">1 semaine</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="2-weeks" type="button">2 semaines</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="3-weeks" type="button">3 semaines</button>
+				</li>
+				<li>
+					<button class="dropdown-item" id="4-weeks" type="button">4 semaines +</button>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-			Difficulté
-		</button>
-		<ul class="dropdown-menu">
-			<li>
-				<button class="dropdown-item" id="all-difficulties" type="button">Toutes les difficultés</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="easy" type="button">facile</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="middle" type="button">moyen</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="difficult" type="button">difficile</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="expert" type="button">expert</button>
-			</li>
-		</ul>
-	</div>
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-			Durée
-		</button>
-		<ul class="dropdown-menu">
-			<li>
-				<button class="dropdown-item" id="all-durations" type="button">Toutes les durées</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="week-end" type="button">week-end</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="1-week" type="button">1 semaine</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="2-weeks" type="button">2 semaines</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="3-weeks" type="button">3 semaines</button>
-			</li>
-			<li>
-				<button class="dropdown-item" id="4-weeks" type="button">4 semaines +</button>
-			</li>
-		</ul>
-	</div>
-</div>
 	<div class="container-fluid pb-md-5 justify-content-center justify-content-md-evenly">
 		<div class="mt-5 row row-cols-1 row-cols-md-2 row-cols-lg-4">
 			{% for journey in journeys %}
 				<div class="journey-card-{{journey.country.name}} {{journey.difficulty}} col mb-4 h-100">
-					<div class="card h-100 m-auto btn p-0 stretched-link" style="max-width: 17rem;">
+					<div class="card h-100 m-auto btn p-0" style="max-width: 17rem;">
 						<img src="{{ asset('build/images/pictures/'~journey.picture~'')}}" class="card-img-top" alt="..." style="height: 13rem;">
 						<div class="card-body">
 							<h5 class="card-title">{{journey.name}}</h5>
@@ -91,7 +91,7 @@
 							</p>
 						</div>
 						<div class="card-footer text-center">
-							<a href="#" class="btn btn-journey stretched-link">Détails</a>
+							<a href="{{ path('app_journey_show', {journey: journey.id})}}" class="btn btn-journey stretched-link">Détails</a>
 						</div>
 					</div>
 				</div>

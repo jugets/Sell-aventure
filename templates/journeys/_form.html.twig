@@ -1,7 +1,11 @@
-{{ form_start(form, { 'attr': {'class': 'row w-50 justify-content-center'} }) }}
+{{ form_start(form, { 'attr': {'class': 'row justify-content-center'} }) }}
 
 {{ form_widget(form) }}
-
-<button type="submit">Ajouter le voyage</button>
+<div class="journey-btns d-flex justify-content-end mb-4">
+	<a class="" href="{{ path('journeys_user', {cyclist: app.user.id}) }}">
+		<button type="button" class="btn btn-journey-cancel fw-bold py-1 px-2 mx-2">Annuler</button>
+	</a>
+	<button class="btn btn-journey-save fw-bold py-1 px-2 mx-0" type="submit">Ajouter le voyage</button>
+</div>
 
 {{ form_end(form) }}

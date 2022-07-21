@@ -5,44 +5,37 @@
 
 {% block body %}
 	<div class="container-fluid pb-md-5 justify-content-center justify-content-md-evenly">
+		<div class="row row-cols-1 justify-content-center">
+			<a href="{{ path('new_journey', {cyclist: app.user.id}) }}" class="btn btn-journey mt-5 w-75">Ajouter un voyage</a>
+		</div>
 		<div class="mt-5 row row-cols-1 row-cols-md-2 row-cols-lg-4">
-			<div class="col mb-4 h-100">
-				<div class="card h-100 m-auto btn p-0" style="max-width: 17rem;">
-					<img src="{{ asset('build/images/bicycle.png')}}" class="card-img-top" alt="..." style="height: 13rem;">
-					<div class="card-body">
-						<h5 class="card-title">Sell'aventure</h5>
-					</div>
-					<div class="card-footer text-center">
-						<a href="{{ path('new_journey', {cyclist: app.user.id}) }}" class="btn-journey">Ajoute un voyage</a>
-					</div>
-				</div>
-			</div>
-				{% for journey in journeys %}
-					<div class="col mb-4 h-100">
-						<div class="card h-100 m-auto btn p-0 stretched-link" style="max-width: 17rem;">
-							<img src="{{ asset('build/images/pictures/'~journey.picture~'')}}" class="card-img-top" alt="..." style="height: 13rem;">
-							<div class="card-body">
-								<h5 class="card-title">{{journey.name}}</h5>
-								<p class="card-text d-none d-lg-block mb-0">
-									Durée :
-									{{journey.duration}}
-									jours
-								</p>
-								<p class="card-text d-none d-lg-block mb-0">
-									Difficulté :
-									{{journey.difficulty}}
-								</p>
-								<p class="card-text d-none d-lg-block mb-0">
-									Ajouté par
-									{{journey.cyclist.username}}
-								</p>
-							</div>
-							<div class="card-footer text-center">
-								<a href="#" class="btn btn-journey stretched-link">Lire la suite</a>
-							</div>
+			{% for journey in journeys %}
+				<div class="col mb-4 h-100">
+					<div class="card h-100 m-auto btn p-0" style="max-width: 17rem;">
+						<img src="{{ asset('build/images/pictures/'~journey.picture~'')}}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{journey.name}}</h5>
+							<p class="card-text d-none d-lg-block mb-0">
+								Durée :
+								{{journey.duration}}
+								jours
+							</p>
+							<p class="card-text d-none d-lg-block mb-0">
+								Difficulté :
+								{{journey.difficulty}}
+							</p>
+							<p class="card-text d-none d-lg-block mb-0">
+								Ajouté par
+								{{journey.cyclist.username}}
+							</p>
+						</div>
+						<div class="card-footer text-center">
+							<a href="{{ path('app_journey_show', {journey: journey.id})}}" class="btn btn-journey">Détails</a>
+							<a href="{{ path('app_journey_edit', {cyclist: journey.cyclist.id, journey: journey.id})}}" class="btn btn-journey">Modifier</a>
 						</div>
 					</div>
-				{% endfor %}
-			</div>
+				</div>
+			{% endfor %}
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}

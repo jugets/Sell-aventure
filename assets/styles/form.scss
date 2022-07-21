@@ -1,0 +1,23 @@
+.write-journey {
+    font-family: 'Simonetta';
+}
+
+.journey-input {
+    background-color: grey;
+    border: none;
+}
+
+#journey_country {
+    display: flex;
+}
+
+#journey > div > label {
+    font-family: 'Cambay';
+    color: $yellow;
+}
+
+.btn-journey-cancel, .btn-journey-save {
+    background-color: $green;
+    color: black;
+    font-family: 'Cambay';
+    }

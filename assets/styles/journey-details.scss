@@ -1,0 +1,27 @@
+.journey-details-title {
+    text-align: center;
+    font-family: 'Simonetta';
+}
+
+.journey-details-img {
+    border-radius: 5%;
+    filter: brightness(75%);
+}
+
+.journey-details-text {
+    ul > li, table > thead > th, table > tbody > tr > td {
+        font-family: 'Cambay';
+        color: wheat;
+        font-size: 1.1rem;
+    }
+}
+
+.list-group-item {
+    background-color: transparent;
+}
+
+.card-step {
+    height: 50em;
+    background-color: $green;
+    filter: brightness(75%);
+}

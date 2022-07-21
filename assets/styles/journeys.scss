@@ -1,14 +1,15 @@
 #dropdownMenu2 {
     width: 7em;
-    background-color: $yellow;
-    border-color: $blue;
-    color: black;
+    background-color: transparent;
+    border-color: $red;
+    color: $green;
     width: 97vw;
+    filter: brightness(75%);
 }
 
 .dropdown-menu {
-    background-color: $red;
-    width: 100vw;
+    background-color: $green;
+    width: 100%;
 }
 
 .dropdown-menu > li > button{
@@ -17,7 +18,8 @@
 }
 
 .card {
-    background-color: $turquoise;
+    background-color: $green;
+    filter: brightness(75%);
 }
 
 .card-title {
@@ -26,9 +28,16 @@
 
 .card-text {
     font-family: 'Simonetta';
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card-img-top {
+    height: 13rem;
+    filter: brightness(75%);
 }
 
 .btn-journey {
-    background-color: $yellow;
+    background-color: $blue;
+    color: $green;
 }

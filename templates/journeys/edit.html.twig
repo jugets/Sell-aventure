@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="new-journey-frame row h-100 d-flex justify-content-center">
+		<div class="new-journey-form col-10 col-md-8 col-lg-6 justify-content-center">
+			<h1 class="text-center write-journey mt-5 mb-4">Modifier le voyage</h1>
+			{{ include('journeys/_form.html.twig', {'button_label': 'Modifier'}) }}
+			<div class="d-flex flex-column align-items-center">
+				{{ include('journeys/_delete_form.html.twig') }}
+				<a class="p-2" href="{{ path('journeys_user', {cyclist: journey.cyclist.id}) }}">Retour</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<h1 class="journey-details-title my-5">{{journey.name}}</h1>
+<div class="journey-details-text row row-cols-1 justify-content-center">
+	<img src="{{ asset('build/images/pictures/'~journey.picture~'')}}" class="journey-details-img col-8 col-md-7 col-lg-6">
+	<ul class="list-group my-5 col-9">
+		<li class="list-group-item text-center">Destination:
+			{{journey.country.name}}
+			-
+			{{journey.region}}</li>
+		<li class="list-group-item text-center">Niveau:
+			{{journey.difficulty}}</li>
+		<li class="list-group-item text-center">Ajouté par:
+			{{journey.cyclist.username}}</li>
+	</ul>
+	{#<table class="table table-striped w-75">
+		<thead>
+			<th>Départ</th>
+			<th>Arrivée</th>
+			<th>Description</th>
+		</thead>
+		<tbody>
+        {% for step in steps %}
+            <tr>
+				<td>{{step.start}}</td>
+				<td>{{step.arrival}}</td>
+				<td>{{step.description}}</td>
+			</tr>
+        {% endfor %}
+		</tbody>
+	</table>#}
+	<div class="container-fluid pb-md-5 justify-content-center justify-content-md-evenly">
+		<div class="mt-5 row row-cols-1 justify-content-center">
+			{% for step in steps %}
+				<div class="col mb-4 w-75 h-100">
+					<div class="card-step h-100 m-auto btn p-0">
+						<div class="card-body">
+							<h5 class="card-title">De {{step.start}} à {{step.arrival}}</h5>
+							<p class="card-text mb-0">
+								{{step.description}}
+							</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
