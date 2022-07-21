@@ -16,19 +16,14 @@ class Journey
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'journeys')]
-    private Collection $destinations;
-
     #[ORM\Column]
     private ?int $duration = null;
 
     #[ORM\Column(length: 25)]
     private ?string $difficulty = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $pictures = [];
-
-    
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
 
     #[ORM\OneToMany(mappedBy: 'journey', targetEntity: Step::class, orphanRemoval: true)]
     private Collection $steps;
@@ -39,6 +34,12 @@ class Journey
     #[ORM\ManyToOne(inversedBy: 'journeys')]
     private ?Cyclist $cyclist = null;
 
+    #[ORM\ManyToOne(inversedBy: 'journeys')]
+    private ?Country $country = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $region = null;
+
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
@@ -48,30 +49,6 @@ class Journey
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Destination>
-     */
-    public function getDestinations(): Collection
-    {
-        return $this->destinations;
-    }
-
-    public function addDestination(Destination $destination): self
-    {
-        if (!$this->destinations->contains($destination)) {
-            $this->destinations[] = $destination;
-        }
-
-        return $this;
-    }
-
-    public function removeDestination(Destination $destination): self
-    {
-        $this->destinations->removeElement($destination);
-
-        return $this;
     }
 
     public function getDuration(): ?int
@@ -98,14 +75,14 @@ class Journey
         return $this;
     }
 
-    public function getPictures(): array
+    public function getPicture(): ?string
     {
-        return $this->pictures;
+        return $this->picture;
     }
 
-    public function setPictures(?array $pictures): self
+    public function setPicture(string $picture): self
     {
-        $this->pictures = $pictures;
+        $this->picture = $picture;
 
         return $this;
     }
@@ -160,6 +137,30 @@ class Journey
     public function setCyclist(?Cyclist $cyclist): self
     {
         $this->cyclist = $cyclist;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }

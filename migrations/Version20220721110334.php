@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220721075359 extends AbstractMigration
+final class Version20220721110334 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20220721075359 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE destination ADD region VARCHAR(255) NOT NULL, DROP regions');
+        $this->addSql('ALTER TABLE journey ADD picture VARCHAR(255) NOT NULL, DROP pictures');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE destination ADD regions LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:array)\', DROP region');
+        $this->addSql('ALTER TABLE journey ADD pictures LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:array)\', DROP picture');
     }
 }

@@ -1,3 +1,21 @@
+#dropdownMenu2 {
+    width: 7em;
+    background-color: $yellow;
+    border-color: $blue;
+    color: black;
+    width: 97vw;
+}
+
+.dropdown-menu {
+    background-color: $red;
+    width: 100vw;
+}
+
+.dropdown-menu > li > button{
+    text-align: center;
+    padding: 0;
+}
+
 .card {
     background-color: $turquoise;
 }

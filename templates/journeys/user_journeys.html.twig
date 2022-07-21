@@ -20,7 +20,7 @@
 				{% for journey in journeys %}
 					<div class="col mb-4 h-100">
 						<div class="card h-100 m-auto btn p-0 stretched-link" style="max-width: 17rem;">
-							<img src="{{ asset('build/images/pictures'~journey.pictures[0]~'')}}" class="card-img-top" alt="..." style="height: 13rem;">
+							<img src="{{ asset('build/images/pictures/'~journey.picture~'')}}" class="card-img-top" alt="..." style="height: 13rem;">
 							<div class="card-body">
 								<h5 class="card-title">{{journey.name}}</h5>
 								<p class="card-text d-none d-lg-block mb-0">

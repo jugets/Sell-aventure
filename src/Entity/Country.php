@@ -18,12 +18,13 @@ class Country
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Destination::class, orphanRemoval: true)]
-    private Collection $destinations;
+    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Journey::class)]
+    private Collection $journeys;
 
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
+        $this->journeys = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,29 +45,29 @@ class Country
     }
 
     /**
-     * @return Collection<int, Destination>
+     * @return Collection<int, Journey>
      */
-    public function getDestinations(): Collection
+    public function getJourneys(): Collection
     {
-        return $this->destinations;
+        return $this->journeys;
     }
 
-    public function addDestination(Destination $destination): self
+    public function addJourney(Journey $journey): self
     {
-        if (!$this->destinations->contains($destination)) {
-            $this->destinations[] = $destination;
-            $destination->setCountry($this);
+        if (!$this->journeys->contains($journey)) {
+            $this->journeys[] = $journey;
+            $journey->setCountry($this);
         }
 
         return $this;
     }
 
-    public function removeDestination(Destination $destination): self
+    public function removeJourney(Journey $journey): self
     {
-        if ($this->destinations->removeElement($destination)) {
+        if ($this->journeys->removeElement($journey)) {
             // set the owning side to null (unless already changed)
-            if ($destination->getCountry() === $this) {
-                $destination->setCountry(null);
+            if ($journey->getCountry() === $this) {
+                $journey->setCountry(null);
             }
         }
 
