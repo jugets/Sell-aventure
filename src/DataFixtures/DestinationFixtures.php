@@ -19,15 +19,15 @@ class DestinationFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         foreach (self::DESTINATIONS as $country => $regions) {
-            $destination = new Destination();
-            $destination->setCountry($country);
-            $destination->setRegions($regions);
-            $manager->persist($destination);
+            
             foreach ($regions as $region) {
+                $destination = new Destination();
+                $destination->setCountry($this->getReference('country_' . $country));
+                $destination->setRegion($region);
+                $manager->persist($destination);
                 $this->addReference('destination_' . $region, $destination);
             }
         }
-
         $manager->flush();
     }
 }

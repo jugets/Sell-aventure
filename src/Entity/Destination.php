@@ -16,14 +16,15 @@ class Destination
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\Column(length: 80)]
-    private ?string $country = null;
-
     #[ORM\ManyToMany(targetEntity: Journey::class, mappedBy: 'destinations')]
     private Collection $journeys;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $regions = [];
+    #[ORM\ManyToOne(inversedBy: 'destinations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Country $country = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $region = null;
 
     public function __construct()
     {
@@ -33,18 +34,6 @@ class Destination
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
     }
 
     /**
@@ -74,14 +63,26 @@ class Destination
         return $this;
     }
 
-    public function getRegions(): array
+    public function getCountry(): ?Country
     {
-        return $this->regions;
+        return $this->country;
     }
 
-    public function setRegions(?array $regions): self
+    public function setCountry(?Country $country): self
     {
-        $this->regions = $regions;
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
