@@ -21,8 +21,30 @@ class JourneyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('name', TextType::class,  array(
+                'label' => 'Nom',
+                'attr' => [
+                    'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
+                ]
+            ))
+            ->add('country', EntityType::class, array(
+                'class' => Country::class,
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => true,
+                'label' => 'Pays',
+                'attr' => [
+                    'class' => 'row mx-0 my-3 my-md-2 d-flex form-control journey-input'
+                ]
+            ))
+            ->add('region', TextType::class,  array(
+                'label' => 'Région',
+                'attr' => [
+                    'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
+                ]
+            ))
             ->add('duration', null, array(
-                'label' => 'Durée',
+                'label' => 'Durée (nombre de jours)',
                 'attr' => [
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
@@ -45,37 +67,7 @@ class JourneyType extends AbstractType
                 'attr' => [
                     'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
                 ]
-            ))
-            ->add('name', TextType::class,  array(
-                'label' => 'Nom',
-                'attr' => [
-                    'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
-                ]
-            ))
-            /*->add('cyclist', null, array (
-                'choice_label' => 'username',
-                'label' => 'Cycliste',
-                'attr' => [
-                    'placeholder' => 'Cycliste',
-                    'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
-                ]
-            ))*/
-            ->add('country', EntityType::class, array (
-                'class' => Country::class,
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => true,
-                'label' => 'Pays',
-                'attr' => [
-                    'class' => 'row mx-0 my-3 my-md-2 d-flex form-control journey-input'
-                ]
-            ))
-            ->add('region', TextType::class,  array(
-                'label' => 'Région',
-                'attr' => [
-                    'class' => 'row mx-0 my-3 my-md-2 form-control journey-input'
-                ]
-            ));
+                ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
